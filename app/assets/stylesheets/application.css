@@ -17,10 +17,10 @@
  */
 
 body {
-    background-color: #d5eed8;
+    background-color: #white;
 }
 .app-header {
-    background-color: #29773d;
+    background-color: black;
     padding: 5rem 0;
     margin-bottom: 2rem;
 }
@@ -32,4 +32,9 @@ body {
 }
 h1, h2, h3 {
     color: #434f46;
+}
+
+img {
+	background:black;
+
 }
