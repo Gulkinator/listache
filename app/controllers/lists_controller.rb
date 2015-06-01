@@ -1,11 +1,13 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :add_item, :delete_item]
+  before_action :authenticate_user!
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :add_item, :delete_item, :send_form, :send_list]
+  before_action :confirm_owner, only: [:show, :edit, :update, :destroy, :add_item, :delete_item, :send_form, :send_list]
 
   # GET /lists
   # GET /lists.json
   def index
-	  @list = List.new
-	  @lists = List.all
+	  @list = List.new(user_id: current_user)
+	  @lists = List.where user_id: current_user.id
   end
 
   # GET /lists/1
@@ -91,6 +93,12 @@ class ListsController < ApplicationController
 		  end
 	  end
   end
+  
+  def send_list
+		to_email = params['to_email']
+		message = params['message']
+		ListMailer.email_list(@list, current_user.email, to_email, message).deliver
+		redirect_to @list, notice: "your list has been sent!"
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -102,4 +110,10 @@ class ListsController < ApplicationController
     def list_params
       params[:list].permit(:title)
     end
+	
+	#confirm the current user actually has access
+	def confirm_owner
+		render :unauthorized if current_user.id != @list.user_id
+	end
+	
 end

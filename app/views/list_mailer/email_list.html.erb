@@ -1,0 +1,12 @@
+<h1><%= @sender %>has sent you a list</h1>
+<p>
+  <%= @message %>
+</p>
+
+<% if @list.list_item? %>
+	<ul>
+		<% @list.list_item.each do |item| %>
+			<li> <%= item %></li>
+		<% end %>
+	</ul>
+<% end %>

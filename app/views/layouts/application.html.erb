@@ -14,6 +14,8 @@
 	  <div class="col-sm-8 col-sm-push-2 text-center">
 		<%= image_tag "listache.png", width: "400" %>
 		<h1 class="sr-only">Listache</h1>
+		<hr/>
+		<%= link_to 'sign out', destroy_user_session_path, method: :delete, class: "btn btn-default" %>
 	  </div>
 	</div>
   </div>
