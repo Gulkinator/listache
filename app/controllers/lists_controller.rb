@@ -27,8 +27,8 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    @list = List.new(list_params)
-
+    @list = List.new(params[:title])
+		@list.user_id = current_user.id
     respond_to do |format|
       if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }
@@ -94,11 +94,18 @@ class ListsController < ApplicationController
 	  end
   end
   
+  def unauthorized
+  end
+  
+  def send_form
+  end
+  
   def send_list
 		to_email = params['to_email']
 		message = params['message']
 		ListMailer.email_list(@list, current_user.email, to_email, message).deliver
 		redirect_to @list, notice: "your list has been sent!"
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -117,3 +124,4 @@ class ListsController < ApplicationController
 	end
 	
 end
+

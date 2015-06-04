@@ -1,9 +1,9 @@
 <h1> Send this List to a Friend!</h1>
 
-<%= form_for @list, url; {action: "sent_list"}, method: "post" do |f| %>
+<%= form_for @list, url: {action: "send_list"}, method: "post" do |f| %>
 
 	<div class="form-group">
-		<label class="form-group" for="to-email">Your friend's email:</label>
+		<label class="control-label" for="to-email">Your friend's email:</label>
 		<input class="form-control" type="text" name="to_email" id="to_email"/>
 	</div>
 	
