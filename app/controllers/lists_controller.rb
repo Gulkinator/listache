@@ -101,11 +101,11 @@ class ListsController < ApplicationController
   end
   
   def send_list
-		to_email = params['to_email']
-		message = params['message']
-		ListMailer.email_list(@list, current_user.email, to_email, message).deliver
-		redirect_to @list, notice: "your list has been sent!"
-	end
+	  to_email = params['to_email']
+	  message = params['message']
+	  ListMailer.email_list(@list, current_user.email, to_email, message).deliver
+	  redirect_to @list, notice: "Your list has been sent!"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

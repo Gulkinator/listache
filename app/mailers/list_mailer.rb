@@ -5,10 +5,13 @@ class ListMailer < ApplicationMailer
   #
   #   en.list.email_list.subject
   #
-  def email_list(list, sender_email, to_email, message)
-    @list = list
-	@message = message
-	@sender = sender_email
-	mail to: to_email, subject: "you've been sent a new List"
-  end
+	def email_list(list, sender_email, to_email, message)
+		
+		@list = list
+		@message = message
+		@sender = sender_email
+		mail to: to_email, subject: "You've been sent a new List"
+		
+	end
+	  
 end
